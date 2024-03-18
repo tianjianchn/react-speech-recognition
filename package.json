@@ -2,7 +2,7 @@
   "name": "react-speech-recognition",
   "version": "3.10.0",
   "description": "💬Speech recognition for your React app",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "homepage": "https://webspeechrecognition.com/",
   "scripts": {
     "build": "babel src -d lib --ignore '**/*.test.js'",
