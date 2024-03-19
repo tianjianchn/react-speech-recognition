@@ -1,4 +1,34 @@
 # react-speech-recognition
+
+This is the ESM version of [react-speech-recognition](https://www.npmjs.com/package/react-speech-recognition), which is simply done by changing `main` to `src/index.js` in package.json. Since we always use a bundle tool like webpack, it's OK working with ESM version.
+
+It could avoid the problem [regeneratorRuntime is not defined](https://github.com/JamesBrill/react-speech-recognition/issues/196).
+
+## Usage
+
+```bash
+npm install react-speech-recognition-es
+```
+
+If you wanna types, go ahead to install the original types package:
+
+```bash
+npm install -D @types/react-speech-recognition
+```
+
+Then in a global TypeScript declaration file(like src/global.d.ts), add:
+
+```ts
+declare module 'react-speech-recognition-es' {
+  export * from 'react-speech-recognition';
+  export { default } from 'react-speech-recognition';
+}
+```
+
+<hr>
+
+> Here is the original README
+
 A React hook that converts speech from the microphone to text and makes it available to your React components.
 
 [![npm version](https://img.shields.io/npm/v/react-speech-recognition.svg)](https://www.npmjs.com/package/react-speech-recognition)
@@ -7,6 +37,7 @@ A React hook that converts speech from the microphone to text and makes it avail
 [![Coverage Status](https://coveralls.io/repos/github/JamesBrill/react-speech-recognition/badge.svg?branch=master)](https://coveralls.io/github/JamesBrill/react-speech-recognition?branch=master)
 
 ## How it works
+
 `useSpeechRecognition` is a React hook that gives a component access to a transcript of speech picked up from the user's microphone.
 
 `SpeechRecognition` manages the global state of the Web Speech API, exposing functions to turn the microphone on and off.
@@ -18,15 +49,15 @@ This version requires React 16.8 so that React hooks can be used. If you're used
 
 ## Useful links
 
-* [Basic example](#basic-example)
-* [Why you should use a polyfill with this library](#why-you-should-use-a-polyfill-with-this-library)
-* [Cross-browser example](#cross-browser-example)
-* [Supported browsers](#supported-browsers)
-* [Polyfills](docs/POLYFILLS.md)
-* [API docs](docs/API.md)
-* [Troubleshooting](#troubleshooting)
-* [Version 3 migration guide](docs/V3-MIGRATION.md)
-* [TypeScript declaration file in DefinitelyTyped](https://github.com/OleksandrYehorov/DefinitelyTyped/blob/master/types/react-speech-recognition/index.d.ts)
+- [Basic example](#basic-example)
+- [Why you should use a polyfill with this library](#why-you-should-use-a-polyfill-with-this-library)
+- [Cross-browser example](#cross-browser-example)
+- [Supported browsers](#supported-browsers)
+- [Polyfills](docs/POLYFILLS.md)
+- [API docs](docs/API.md)
+- [Troubleshooting](#troubleshooting)
+- [Version 3 migration guide](docs/V3-MIGRATION.md)
+- [TypeScript declaration file in DefinitelyTyped](https://github.com/OleksandrYehorov/DefinitelyTyped/blob/master/types/react-speech-recognition/index.d.ts)
 
 ## Installation
 
@@ -76,15 +107,16 @@ You can see more examples in the example React app attached to this repo. See [D
 ## Why you should use a polyfill with this library
 
 By default, speech recognition is not supported in all browsers, with the best native experience being available on desktop Chrome. To avoid the limitations of native browser speech recognition, it's recommended that you combine `react-speech-recognition` with a [speech recognition polyfill](docs/POLYFILLS.md). Why? Here's a comparison with and without polyfills:
-* ✅ With a polyfill, your web app will be voice-enabled on all modern browsers (except Internet Explorer)
-* ❌ Without a polyfill, your web app will only be voice-enabled on the browsers listed [here](#supported-browsers)
-* ✅ With a polyfill, your web app will have a consistent voice experience across browsers
-* ❌ Without a polyfill, different native implementations will produce different transcriptions, have different levels of accuracy, and have different formatting styles
-* ✅ With a polyfill, you control who is processing your users' voice data
-* ❌ Without a polyfill, your users' voice data will be sent to big tech companies like Google or Apple to be transcribed
-* ✅ With a polyfill, `react-speech-recognition` will be suitable for use in commercial applications
-* ❌ Without a polyfill, `react-speech-recognition` will still be fine for personal projects or use cases where cross-browser support is not needed
- 
+
+- ✅ With a polyfill, your web app will be voice-enabled on all modern browsers (except Internet Explorer)
+- ❌ Without a polyfill, your web app will only be voice-enabled on the browsers listed [here](#supported-browsers)
+- ✅ With a polyfill, your web app will have a consistent voice experience across browsers
+- ❌ Without a polyfill, different native implementations will produce different transcriptions, have different levels of accuracy, and have different formatting styles
+- ✅ With a polyfill, you control who is processing your users' voice data
+- ❌ Without a polyfill, your users' voice data will be sent to big tech companies like Google or Apple to be transcribed
+- ✅ With a polyfill, `react-speech-recognition` will be suitable for use in commercial applications
+- ❌ Without a polyfill, `react-speech-recognition` will still be fine for personal projects or use cases where cross-browser support is not needed
+
 `react-speech-recognition` currently supports polyfills for the following cloud providers:
 
 <div>
@@ -100,9 +132,11 @@ By default, speech recognition is not supported in all browsers, with the best n
 ## Cross-browser example
 
 You can find the full guide for setting up a polyfill [here](docs/POLYFILLS.md). Alternatively, here is a quick (and free) example using Speechly:
-* Install `@speechly/speech-recognition-polyfill` in your web app
-* You will need a Speechly app ID. To get one of these, sign up for free with Speechly and follow [the guide here](https://docs.speechly.com/quick-start/stt-only/)
-* Here's a component for a push-to-talk button. The basic example above would also work fine.
+
+- Install `@speechly/speech-recognition-polyfill` in your web app
+- You will need a Speechly app ID. To get one of these, sign up for free with Speechly and follow [the guide here](https://docs.speechly.com/quick-start/stt-only/)
+- Here's a component for a push-to-talk button. The basic example above would also work fine.
+
 ```
 import React from 'react';
 import { createSpeechlySpeechRecognition } from '@speechly/speech-recognition-polyfill';
@@ -154,12 +188,12 @@ if (!browserSupportsSpeechRecognition) {
 
 Without a polyfill, the Web Speech API is largely only supported by Google browsers. As of May 2021, the following browsers support the Web Speech API:
 
-* Chrome (desktop): this is by far the smoothest experience
-* Safari 14.1
-* Microsoft Edge
-* Chrome (Android): a word of warning about this platform, which is that there can be an annoying beeping sound when turning the microphone on. This is part of the Android OS and cannot be controlled from the browser
-* Android webview
-* Samsung Internet
+- Chrome (desktop): this is by far the smoothest experience
+- Safari 14.1
+- Microsoft Edge
+- Chrome (Android): a word of warning about this platform, which is that there can be an annoying beeping sound when turning the microphone on. This is part of the Android OS and cannot be controlled from the browser
+- Android webview
+- Samsung Internet
 
 For all other browsers, you can render fallback content using the `SpeechRecognition.browserSupportsSpeechRecognition` function described above. Alternatively, as mentioned before, you can integrate a [polyfill](docs/POLYFILLS.md).
 
@@ -220,6 +254,7 @@ const { resetTranscript } = useSpeechRecognition()
 ## Commands
 
 To respond when the user says a particular phrase, you can pass in a list of commands to the `useSpeechRecognition` hook. Each command is an object with the following properties:
+
 - `command`: This is a string or `RegExp` representing the phrase you want to listen for. If you want to use the same callback for multiple commands, you can also pass in an array here, with each value being a string or `RegExp`
 - `callback`: The function that is executed when the command is spoken. The last argument that this function receives will always be an object containing the following properties:
   - `command`: The command phrase that was matched. This can be useful when you provide an array of command phrases for the same callback and need to know which one triggered it
@@ -236,6 +271,7 @@ To respond when the user says a particular phrase, you can pass in a list of com
 ### Command symbols
 
 To make commands easier to write, the following symbols are supported:
+
 - Splats: this is just a `*` and will match multi-word text:
   - Example: `'I would like to order *'`
   - The words that match the splat will be passed into the callback, one argument per splat
@@ -347,8 +383,9 @@ SpeechRecognition.startListening({ language: 'zh-CN' })
 ### `regeneratorRuntime is not defined`
 
 If you see the error `regeneratorRuntime is not defined` when using this library, you will need to ensure your web app installs `regenerator-runtime`:
-* `npm i --save regenerator-runtime`
-* If you are using NextJS, put this at the top of your `_app.js` file: `import 'regenerator-runtime/runtime'`. For any other framework, put it at the top of your `index.js` file
+
+- `npm i --save regenerator-runtime`
+- If you are using NextJS, put this at the top of your `_app.js` file: `import 'regenerator-runtime/runtime'`. For any other framework, put it at the top of your `index.js` file
 
 ### How to use `react-speech-recognition` offline?
 
@@ -359,6 +396,7 @@ If you are building an offline web app, you can detect when the browser is offli
 ## Developing
 
 You can run an example React app that uses `react-speech-recognition` with:
+
 ```
 npm i
 npm run dev
